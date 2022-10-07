@@ -1,11 +1,12 @@
 pipeline {
+     triggers {
+        pollSCM '* * * * *'
+}
     agent any
     tools {
   maven 'maven'
 }
-    triggers {
-        pollSCM '* * * * *'
-}
+   
     
     stages {
         stage('code checkout') {
@@ -20,11 +21,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-             stage('test') {
-            steps {
-                echo 'test'
-            }
-        }
+        
              stage('deploy') {
             steps {
                 echo 'deploy'
